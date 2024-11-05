@@ -17,12 +17,15 @@ import CheckAuth from './components/common/check-auth';
 import UnauthPage from './pages/unauth-page';
 
 function App() {
-  const isAuthenticated = true;
-  const user = {
-    name:'jazeera',
-    role:'user'
-  };
+  const isAuthenticated = false;
+  const user = null
 
+  // const user = {
+  //   name:'jazeera',
+  //   role:'user'
+  // };
+
+  
   return (
     <>
       <div className="flex flex-col overflow-hidden bg-white">
@@ -71,5 +74,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;
