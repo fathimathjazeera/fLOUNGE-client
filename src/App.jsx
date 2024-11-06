@@ -15,16 +15,18 @@ import ShoppingAccount from './pages/shopping-view/account';
 import ShoppingCheckout from './pages/shopping-view/checkout';
 import CheckAuth from './components/common/check-auth';
 import UnauthPage from './pages/unauth-page';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkAuth } from './store/auth-slice';
+import { useEffect } from 'react';
 
 function App() {
-  const isAuthenticated = false;
-  const user = null
+ 
 
-  // const user = {
-  //   name:'jazeera',
-  //   role:'user'
-  // };
-
+  const {user,isAuthenticated} = useSelector(state => state.auth)
+  const dispatch= useDispatch()
+  useEffect(() => {
+    dispatch(checkAuth())
+  }, [dispatch])
   
   return (
     <>
@@ -68,7 +70,7 @@ function App() {
           </Route>
           <Route path="/unauth-page" element={<UnauthPage />} />
           <Route path="*" element={<NotFound />} />
-         
+
         </Routes>
       </div>
     </>
