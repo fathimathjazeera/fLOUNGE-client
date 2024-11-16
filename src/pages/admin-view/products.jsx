@@ -28,6 +28,7 @@ function AdminProducts() {
   const [imageLoadingState, setImageLoadingState] = useState(false);
   const [currentEditedId , setCurrentEditedId] = useState(null)
   const { productList } = useSelector((state) => state.adminProducts);
+  
   console.log(productList, "productList");
 
   const dispatch = useDispatch();

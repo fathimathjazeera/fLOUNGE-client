@@ -18,25 +18,22 @@ import UnauthPage from './pages/unauth-page';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkAuth } from './store/auth-slice';
 import { useEffect } from 'react';
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from '@/components/ui/skeleton';
 
 function App() {
- 
-
-  const {user,isAuthenticated, isLoading} = useSelector(state => state.auth)
-  const dispatch= useDispatch()
+  const { user, isAuthenticated, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(checkAuth())
-  }, [dispatch])
-  console.log(isLoading,user,"from app.jsx")
-  if(isLoading){
-    return <Skeleton className="w-[600px] h-[600px] rounded-full" />
-
+    dispatch(checkAuth());
+  }, [dispatch]);
+  if (isLoading) {
+    return <Skeleton className="w-[600px] h-[600px] rounded-full" />;
   }
   return (
     <>
       <div className="flex flex-col overflow-hidden bg-white">
-
         <Routes>
           <Route
             path="/auth"
@@ -62,11 +59,14 @@ function App() {
             <Route path="orders" element={<AdminOrders />} />
             <Route path="features" element={<AdminFeatures />} />
           </Route>
-          <Route path="/shop" element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-            <ShoppingLayout />
-            </CheckAuth>
-            }>
+          <Route
+            path="/shop"
+            element={
+              <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+                <ShoppingLayout />
+              </CheckAuth>
+            }
+          >
             <Route path="home" element={<ShoppingHome />} />
             <Route path="listing" element={<ShoppingListing />} />
             <Route path="checkout" element={<ShoppingCheckout />} />
@@ -74,12 +74,10 @@ function App() {
           </Route>
           <Route path="/unauth-page" element={<UnauthPage />} />
           <Route path="*" element={<NotFound />} />
-
         </Routes>
       </div>
     </>
   );
 }
-
 
 export default App;
